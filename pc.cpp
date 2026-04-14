@@ -21,9 +21,9 @@ int main(){
 
     Force f1;
 
-    cout<<"Force = "<<f1.calculate(5, 3) << " N/m" <<endl;
-    cout<<"Force = "<<f1.calculate(5.5, 3.2) << " N/m" <<endl;
-    cout<<"Force = "<<f1.calculate(5, 3, 2.0) << " N/m" <<endl;
+    cout<<"Force = "<<f1.calculate(5, 3) << " N" <<endl;
+    cout<<"Force = "<<f1.calculate(5.5, 3.2) << " N" <<endl;
+    cout<<"Force = "<<f1.calculate(5, 3, 2.0) << " N" <<endl;
 
 
     return 0;
