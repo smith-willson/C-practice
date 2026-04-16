@@ -2,52 +2,38 @@
 #include <cmath>
 using namespace std;
 
-class Shape
-{
+class Shape {
 protected:
     string color;
 
 public:
-    Shape(string c = "")
-    {
-        color = c;
-    }
+    Shape(string c = "") : color(c) {}
 
-    virtual void input()
-    {
+    virtual void input() {
         cout << "What is the color of shape: ";
         getline(cin >> ws, color);
     }
 
-    virtual void display()
-    {
+    virtual void display() {
         cout << "Color: " << color << endl;
-    }
-
-    virtual double volume()
-    {
-        return 0;
-    }
-
-    virtual double surfaceArea()
-    {
-        return 0;
-    }
-
-    virtual double Area()
-    {
-        return 0;
-    }
-
-    virtual double peri()
-    {
-        return 0;
     }
 
     virtual ~Shape() {}
 };
 
-class Rectangle : public Shape
+class Shape2D : public Shape {
+public:
+    virtual double area() = 0;
+    virtual double perimeter() = 0;
+};
+
+class Shape3D : public Shape {
+public:
+    virtual double volume() = 0;
+    virtual double surfaceArea() = 0;
+};
+
+class Rectangle : public Shape2D
 {
 protected:
     double length;
@@ -69,12 +55,12 @@ public:
         } while (length <= 0);
     }
 
-    double Area() override
+    double area() override
     {
         return width * length;
     }
 
-    double peri() override
+    double perimeter() override
     {
         return 2 * (width + length);
     }
@@ -84,14 +70,14 @@ public:
         Shape::display();
         cout << "Length    : " << length << endl;
         cout << "Width     : " << width << endl;
-        cout << "Area      : " << Area() << endl;
-        cout << "Perimeter : " << peri() << endl;
+        cout << "Area      : " << area() << endl;
+        cout << "Perimeter : " << perimeter() << endl;
     }
 
     virtual ~Rectangle() {}
 };
 
-class Triangle : public Shape
+class Triangle : public Shape2D
 {
 protected:
     double base;
@@ -131,12 +117,12 @@ public:
         } while (side3 <= 0);
     }
 
-    double Area() override
+    double area() override
     {
         return 0.5 * base * height;
     }
 
-    double peri() override
+    double perimeter() override
     {
         return side1 + side2 + side3;
     }
@@ -146,14 +132,48 @@ public:
         Shape::display();
         cout << "Base      : " << base << endl;
         cout << "Height    : " << height << endl;
-        cout << "Area      : " << Area() << endl;
-        cout << "Perimeter : " << peri() << endl;
+        cout << "Area      : " << area() << endl;
+        cout << "Perimeter : " << perimeter() << endl;
     }
 
     virtual ~Triangle() {}
 };
 
-class cylinder : public Shape
+class Regularpentagon : public Shape2D
+{
+protected:
+    double side;
+
+public:
+    void input() override
+    {
+        Shape::input();
+        do
+        {
+            cout << "Enter length of side( >= 0): ";
+            cin >> side;
+        } while (side <= 0);
+    }
+
+    double area() override
+    {
+        return (5 * side * side / 4) * sqrt(5 + 2 * sqrt(5));
+    }
+
+    double perimeter() override
+    {
+        return 5 * side;
+    }
+
+    void display() override {
+    Shape::display();
+    cout << "Side      : " << side << endl;
+    cout << "Area      : " << area() << endl;
+    cout << "Perimeter : " << perimeter() << endl;
+    }
+};
+
+class cylinder : public Shape3D
 {
 protected:
     double radius;
@@ -175,29 +195,27 @@ public:
         } while (height <= 0);
     }
 
-    double Area() override
-    {
-        return 3.14159 * radius * radius * height;
-    }
+    double volume() override {
+    return 3.14159 * radius * radius * height;
+}
 
-    double peri() override
-    {
-        return 2 * 3.14159 * radius * height;
-    }
+    double surfaceArea() override {
+    return 2 * 3.14159 * radius * (height + radius);
+}
 
     void display() override
     {
         Shape::display();
         cout << "Radius    : " << radius << endl;
         cout << "Height    : " << height << endl;
-        cout << "Area      : " << Area() << endl;
-        cout << "Perimeter : " << peri() << endl;
+        cout << "Volume        : " << volume() << endl;
+        cout << "Surface Area  : " << surfaceArea() << endl;
     }
 
     virtual ~cylinder() {}
 };
 
-class sphere : public Shape
+class sphere : public Shape3D
 {
 protected:
     double radius;
@@ -227,61 +245,50 @@ public:
     {
         Shape::display();
         cout << "Radius    : " << radius << endl;
-        cout << "Volume    : " << Area() << endl;
-        cout << "Surface Area : " << peri() << endl;
+        cout << "Volume        : " << volume() << endl;
+        cout << "Surface Area  : " << surfaceArea() << endl;
     }
 
     virtual ~sphere() {}
 };
 
-class Regularpentagon : public Shape
-{
-protected:
-    double side;
-
-public:
-    void input() override
-    {
-        Shape::input();
-        do
-        {
-            cout << "Enter length of side( >= 0): ";
-            cin >> side;
-        } while (side <= 0);
-    }
-
-    double Area() override
-    {
-        return (5 * side * side / 4) * sqrt(5 + 2 * sqrt(5));
-    }
-
-    double peri() override
-    {
-        return 5 * side;
-    }
-};
-
 int main(){
-    Shape* shapes[5];
 
-    shapes[0] = new Rectangle();
-    shapes[1] = new Triangle();
-    shapes[2] = new cylinder();
-    shapes[3] = new sphere();
-    shapes[4] = new Regularpentagon();
+    Shape2D* shapes2D[3];
+        shapes2D[0] = new Regularpentagon();
+        shapes2D[1] = new Rectangle();
+        shapes2D[2] = new Triangle();
 
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 3; i++){
         cout<<"\n=================================" <<endl;
-        shapes[i]->input();
+        shapes2D[i]->input();
     }
 
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 3; i++){
         cout<<"\n=================================" <<endl;
-        shapes[i]->display();
+        shapes2D[i]->display();
     }
 
-    for (int i = 0; i < 5; i++){
-        delete shapes[i];
+    for (int i = 0; i < 3; i++){
+        delete shapes2D[i];
+    }
+
+    Shape3D* shapes3D[2];
+        shapes3D[0] = new cylinder();
+        shapes3D[1] = new sphere();
+
+    for (int i = 0; i < 2; i++){
+        cout<<"\n=================================" <<endl;
+        shapes3D[i]->input();
+    }
+
+    for (int i = 0; i < 2; i++){
+        cout<<"\n=================================" <<endl;
+        shapes3D[i]->display();
+    }
+
+    for (int i = 0; i < 2; i++){
+        delete shapes3D[i];
     }
 
     return 0;
