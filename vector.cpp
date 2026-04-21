@@ -39,39 +39,52 @@
 //     return 0;
 // }
 
-
 #include <iostream>
 #include <vector>
 using namespace std;
 
-int main(){
+int main()
+{
     vector<int> v;
     int num;
     int even = 0;
     int odd = 0;
+    int largest = v[0];
 
     cout << "Enter 5 numbers: ";
-    for(int i= 0;i < 5;i++){
-        cin>>num;
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> num;
         v.push_back(num);
     }
 
     cout << "\nReverse order: ";
-    for (int i = v.size() - 1; i>= 0; i--)
+    for (int i = v.size() - 1; i >= 0; i--)
     {
         cout << v[i] << " ";
     }
 
-    for (int x : v) {
-        if (x % 2 == 0) {
+    for (int x : v)
+    {
+        if (x % 2 == 0)
+        {
             even++;
-        } else {
+        }
+        else
+        {
             odd++;
         }
     }
 
+    for (int x : v)
+    {
+        if (x < largest)
+        {
+            largest = x;
+        }
+    }
     cout << "\nEven Count = " << even;
     cout << "\nOdd Count = " << odd;
-
+    cout << "\nlargest = " << largest;
     return 0;
 }
