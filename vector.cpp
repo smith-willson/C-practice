@@ -47,6 +47,8 @@ using namespace std;
 int main(){
     vector<int> v;
     int num;
+    int even = 0;
+    int odd = 0;
 
     cout << "Enter 5 numbers: ";
     for(int i= 0;i < 5;i++){
@@ -59,6 +61,17 @@ int main(){
     {
         cout << v[i] << " ";
     }
+
+    for (int x : v) {
+        if (x % 2 == 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    }
+
+    cout << "\nEven Count = " << even;
+    cout << "\nOdd Count = " << odd;
 
     return 0;
 }
