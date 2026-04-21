@@ -49,7 +49,7 @@ int main()
     int num;
     int even = 0;
     int odd = 0;
-    int largest = v[0];
+    
 
     cout << "Enter 5 numbers: ";
     for (int i = 0; i < 5; i++)
@@ -76,9 +76,11 @@ int main()
         }
     }
 
+    int largest = v[0];
+
     for (int x : v)
     {
-        if (x < largest)
+        if (x > largest)
         {
             largest = x;
         }
