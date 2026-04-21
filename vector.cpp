@@ -76,17 +76,17 @@ int main()
         }
     }
 
-    int largest = v[0];
+    int smallest= v[0];
 
     for (int x : v)
     {
-        if (x > largest)
+        if (x < smallest)
         {
-            largest = x;
+            smallest = x;
         }
     }
     cout << "\nEven Count = " << even;
     cout << "\nOdd Count = " << odd;
-    cout << "\nlargest = " << largest;
+    cout << "\nSmallest = " << smallest;
     return 0;
 }
