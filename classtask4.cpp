@@ -21,14 +21,14 @@ private:
     }
 
 public:
-    // Constructor
+   
     Time(int h = 0, int m = 0) {
         hours = h;
         minutes = m;
         normalize();
     }
 
-    // + operator
+
     Time operator+(const Time& t) {
         Time temp;
         temp.hours = this->hours + t.hours;
@@ -37,7 +37,7 @@ public:
         return temp;
     }
 
-    // - operator
+
     Time operator-(const Time& t) {
         Time temp;
         temp.hours = this->hours - t.hours;
@@ -46,14 +46,14 @@ public:
         return temp;
     }
 
-    // > operator
+    
     bool operator>(const Time& t) {
         if (hours > t.hours) return true;
         if (hours == t.hours && minutes > t.minutes) return true;
         return false;
     }
 
-    // << operator (friend)
+    
     friend ostream& operator<<(ostream& out, const Time& t) {
         out << setw(2) << setfill('0') << t.hours << ":"
             << setw(2) << setfill('0') << t.minutes;
