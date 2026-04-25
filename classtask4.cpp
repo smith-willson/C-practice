@@ -7,7 +7,6 @@ private:
     int hours;
     int minutes;
 
-    // Helper to normalize time
     void normalize() {
         if (minutes >= 60) {
             hours += minutes / 60;
@@ -62,8 +61,8 @@ public:
 };
 
 int main() {
-    Time t1(2, 50);
-    Time t2(1, 30);
+    Time t1(2, 80);
+    Time t2(1, 90);
 
     Time sum = t1 + t2;
     Time diff = t1 - t2;
