@@ -52,6 +52,26 @@
 // // };
 
 // int main() {
+//     Matrix<int> m1, m2, sum;
+
+//     cout << "Enter first matrix:\n";
+//     m1.input();
+
+//     cout << "Enter second matrix:\n";
+//     m2.input();
+
+//     sum = m1 + m2;
+
+//     cout << "Sum Matrix:\n";
+//     sum.display();
+
+//     cout << "Determinant of first matrix: ";
+//     cout << m1.determinant();
+
+//     return 0;
+// }
+
+// int main() {
 //     Matrix<float> m1, m2, sum, diff;
 
 //     cout << "Enter Matrix 1:\n";
