@@ -94,5 +94,5 @@ int main(){
     Librarian lib("Mr. Ahmed");
 
 
-    Librarian myLibrary(&lib);
+    Library myLibrary(&lib);
 }

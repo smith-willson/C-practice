@@ -3,7 +3,7 @@ using namespace std;
 
 class Person {
 protected:
-    string name;0
+    string name;
 public:
     Person(string n) : name(n) {}
 
