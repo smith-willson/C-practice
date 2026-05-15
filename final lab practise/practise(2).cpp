@@ -183,11 +183,11 @@ public:
 int main()
 {
     int n;
-    student *students = new student[n];
-
     cout << "\n\n===== ALL STUDENTS DATA =====\n";
     cout << "How many Student you want to store: ";
     cin >> n;
+
+    student *students = new student[n];
     for (int i = 0; i < n; i++)
     {
         cout << "\nStudent " << i + 1 << ":" << endl;
